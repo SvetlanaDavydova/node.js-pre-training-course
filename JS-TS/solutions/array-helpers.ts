@@ -10,7 +10,7 @@ export function mapArray<T, R>(source: readonly T[], mapper: (item: T, index: nu
   const result = [];
 
   for (let [index, value] of source.entries()) {
-    result.push(mapper(value, index));
+    result[result.length] = mapper(value, index);
   }
 
   return result;
@@ -24,7 +24,7 @@ export function filterArray<T>(source: readonly T[], predicate: (item: T, index:
   const result = [];
 
   for (let [index, value] of source.entries()) {
-    if (predicate(value, index)) result.push(value);
+    if (predicate(value, index)) result[result.length] = value;
   }
 
   return result;
@@ -55,9 +55,9 @@ export function partition<T>(source: readonly T[], predicate: (item: T) => boole
 
   for (let item of source) {
     if (predicate(item)) {
-      trulyArray.push(item);
+      trulyArray[trulyArray.length] = item;
     } else {
-      falsyArray.push(item);
+      falsyArray[falsyArray.length] = item;
     }
   }
 

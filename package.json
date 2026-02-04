@@ -11,7 +11,7 @@
     "test:all": "jest",
     "test:docker-git": "jest tests/docker-git.test.js",
     "test:db-nosql": "jest tests/db-nosql.test.js",
-    "test:js-ts-all": "jest --testPathPatterns=js-ts-task-04",
+    "test:js-ts-all": "jest --testPathPatterns=js-ts-task-06",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
