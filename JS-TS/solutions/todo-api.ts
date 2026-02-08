@@ -3,17 +3,17 @@ import { Todo, NewTodo, TodoStatus } from './types';
 
 export class TodoApi {
   private repo = new InMemoryRepository<Todo>();
-  private items: Todo[]  = [];
 
   async getAll(): Promise<Todo[]> {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(this.items), 600);
+      setTimeout(() => resolve(this.repo.findAll()), 600);
     })
   }
 
   async add(newTodo: NewTodo): Promise<Todo> {
     const createdAt = new Date();
-    const id = this.items.length === 0 ? 1 : this.items[this.items.length - 1].id + 1;
+    const allTodos = this.repo.findAll();
+    const id = allTodos.length === 0 ? 1 : allTodos[allTodos.length - 1].id + 1;
     
     const createdToDo: Todo = {
       ...newTodo,
@@ -22,7 +22,7 @@ export class TodoApi {
       status: TodoStatus.PENDING
     };
 
-    this.items.push(createdToDo);
+    this.repo.add(createdToDo);
 
     return new Promise ((resolve) => {
       setTimeout(() => resolve(createdToDo), 600);
@@ -30,17 +30,13 @@ export class TodoApi {
   }
 
   async update(id: number, update: Partial<Omit<Todo, 'id' | 'createdAt'>>): Promise<Todo> {
-    const todoIndexToUpdate = this.items.findIndex(item => item.id = id);
+    const todo = this.repo.findById(id);
 
-    if(todoIndexToUpdate === -1) {
+    if(!todo) {
       throw new TodoNotFoundError('Todo not found.');
-    };
+    }
 
-    const newTodo = {
-      ...this.items[todoIndexToUpdate],
-      ...update
-    };
-    this.items[todoIndexToUpdate] = newTodo;
+    const newTodo = this.repo.update(id, update);
 
     return new Promise ((resolve) => {
       setTimeout(() => resolve(newTodo), 600);
@@ -48,13 +44,13 @@ export class TodoApi {
   }
 
   async remove(id: number): Promise<void> {
-    const todoIndexToDelete = this.items.findIndex(item => item.id = id);
+    const todo = this.repo.findById(id);
 
-    if(todoIndexToDelete === -1) {
+    if(!todo) {
       throw new TodoNotFoundError('Todo not found.');
     }
 
-    this.items.splice(todoIndexToDelete, 1);
+    this.repo.remove(id);
     return new Promise ((resolve) => {
       setTimeout(() => resolve(), 600);
     });
