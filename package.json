@@ -11,9 +11,10 @@
     "test:all": "jest",
     "test:docker-git": "jest tests/docker-git.test.js",
     "test:db-nosql": "jest tests/db-nosql.test.js",
-    "test:js-ts-all": "jest --testPathPatterns=js-ts-task-06",
+    "test:js-ts-all": "jest --testPathPatterns=js-ts-task-all",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:js-ts-09": "jest tests/todo-service.spec.ts"
   },
   "keywords": [],
   "author": "",
