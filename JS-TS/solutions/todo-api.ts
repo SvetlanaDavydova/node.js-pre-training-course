@@ -59,7 +59,7 @@ export class TodoApi {
 }
 
 class TodoNotFoundError extends Error {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     this.name = "TodoNotFoundError";
   }
