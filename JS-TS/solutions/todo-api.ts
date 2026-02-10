@@ -14,12 +14,13 @@ export class TodoApi {
     const createdAt = new Date();
     const allTodos = this.repo.findAll();
     const id = allTodos.length === 0 ? 1 : allTodos[allTodos.length - 1].id + 1;
+    const status = TodoStatus.PENDING;
     
     const createdToDo: Todo = {
       ...newTodo,
       id,
       createdAt,
-      status: TodoStatus.PENDING
+      status
     };
 
     this.repo.add(createdToDo);

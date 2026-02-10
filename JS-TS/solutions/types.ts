@@ -7,9 +7,9 @@ interface Todo {
 }
 
 enum TodoStatus {
-    PENDING,
-    IN_PROGRESS,
-    COMPLETED
+    PENDING = 'pending',
+    IN_PROGRESS = 'in_progress',
+    COMPLETED = 'completed'
 }
 
 type NewTodo = {
