@@ -1,0 +1,7 @@
+.completedTodo {
+    color: green;
+}
+
+.uncompletedTodo {
+    color: red;
+}

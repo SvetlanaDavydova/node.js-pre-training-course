@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoItemProps } from '../../types';
+import styles from './todo.module.css';
 
 /**
  * Task 2: ToDoItem Component
@@ -47,10 +48,12 @@ export const ToDoItem: React.FC<TodoItemProps> = ({ todo }) => {
   // <ToDoItem todo={{ id: 1, title: 'Learn React', completed: true }} />
 
   return (
-    <div style={todo.completed ? {color: 'green'} : {color: 'red'}}>
+    <div className={todo.completed ? styles.completedTodo : styles.uncompletedTodo} >
       {/* TODO: Replace this with your implementation */}
       <h4>{todo.title}</h4>
       <p>{todo.completed ? 'completed' : 'not completed'}</p>
     </div>
   );
 };
+
+//style={todo.completed ? {color: 'green'} : {color: 'red'}}
